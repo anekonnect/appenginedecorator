@@ -1,4 +1,4 @@
-package core
+package appenginedecorator
 
 import (
 	"github.com/julienschmidt/httprouter"
