@@ -1,14 +1,10 @@
-package appenginedecorator
+package decorator
 
 import (
 	"github.com/julienschmidt/httprouter"
 	"net/http"
 	"reflect"
-
-	"appengine"
-	"fmt"
 	"strings"
-	"time"
 )
 
 // Search returns a Decorator which will call the underlying handler and then search for a specified term in the

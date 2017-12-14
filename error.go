@@ -1,4 +1,4 @@
-package appenginedecorator
+package decorator
 
 import (
 	"fmt"
@@ -26,15 +26,15 @@ func (e ServerError) Error() string {
 type ErrorCode int32
 
 const (
-	MissingErrorCode ErrorCode = iota
+	InternalServerError ErrorCode = iota
 	BadRequest
 	Unauthorized
 	Forbidden
 	NotFound
 )
 
-var userTypes = [...]string{
-	"MissingErrorCode",
+var errorStrings = [...]string{
+	"InternalServerError",
 	"BadRequest",
 	"Unauthorized",
 	"Forbidden",
@@ -49,7 +49,7 @@ var httpErrorCodes = [...]int{
 	404,
 }
 
-func (ut ErrorCode) String() string { return userTypes[ut] }
+func (ut ErrorCode) String() string { return errorStrings[ut] }
 
 func (ut ErrorCode) HttpErrorCode() int { return httpErrorCodes[ut] }
 

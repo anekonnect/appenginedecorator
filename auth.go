@@ -1,11 +1,8 @@
-package appenginedecorator
+package decorator
 
 import (
 	"errors"
-	"fmt"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/julienschmidt/httprouter"
-	"model"
 	"net/http"
 	"strings"
 )

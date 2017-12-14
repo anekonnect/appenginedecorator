@@ -1,7 +1,6 @@
-package appenginedecorator
+package decorator
 
 import (
-	"appengine"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"net/http"
@@ -18,17 +17,17 @@ import (
 // would be more efficient.
 func Paginate(attribute string) Decorator {
 	return func(h Handler) Handler {
-		return HandlerFunc(func(r *http.Request, ps httprouter.Params, username string) (interface{}, *ServerError) {
-			limit, err := getLimit(r, username)
+		return HandlerFunc(func(r *http.Request) (interface{}, *ServerError) {
+			limit, err := getLimit(r)
 			if err != nil {
 				return nil, err
 			}
-			timestamp, err := getTimestamp(r, username)
+			timestamp, err := getTimestamp(r)
 			if err != nil {
 				return nil, err
 			}
 
-			response, serverError := h.Do(r, ps, username)
+			response, serverError := h.Do(r)
 			if serverError != nil {
 				return response, serverError
 			}

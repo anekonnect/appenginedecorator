@@ -1,4 +1,4 @@
-package appenginedecorator
+package appengine
 
 import (
 	"appengine"
@@ -16,7 +16,7 @@ import (
 // Cache returns a Decorator which will check the memcache for a cached Response. If a cached response is not found, it
 // will invoke the underlying handler. The path of request is used the cache key.
 // If the request contains a query param 'ignore_cache', then memcache will not be checked and underlying handler will be invoked.
-func Cache(typ reflect.Type, ttl time.Duration) Decorator {
+func Cache(typ reflect.Type, ttl time.Duration) decorators.Decorator {
 	return CacheWithKey(typ, ttl, func(r *http.Request, ps httprouter.Params, username string) (*string, *ServerError) {
 		requestUri := r.RequestURI
 		parsedUrl, err := url.Parse(requestUri)
